@@ -1,0 +1,1 @@
+function doSearch(){Cookies.set("query",""+$("#query").val(),{expires:1})}var isDebbug=!0,globalSearch="";$(document).ready(function(){function e(){setTimeout(function(){loadSkyFeed(),e()},18e5)}$(".skyFeed").length>0&&(loadSkyFeed(),e()),$(".searchList").length>0&&$(".searchList").html()});

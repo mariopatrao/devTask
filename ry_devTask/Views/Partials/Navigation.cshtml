@@ -1,0 +1,33 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    IPublishedContent currentPage = Model.Content;
+    IPublishedContent homePage = Model.Content.AncestorsOrSelf(1).First();
+    IEnumerable<IPublishedContent> menuItems = homePage.Children().Where(a => a.GetPropertyValue<bool>("displayInNav")); ;
+}
+
+<nav class="navbar fixed-top navbar-dark bg-primary">
+    <a class="navbar-brand" href=".">This is the @(currentPage.GetPropertyValue<string>("pageTitle").ToLower()) page</a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="collapsingNavbar">
+        <ul class="navbar-nav">
+            @foreach (IPublishedContent page in menuItems)
+            {
+                <li class="nav-item @(page.IsAncestorOrSelf(currentPage) ? " active" : null)">
+                    <a class="nav-link" href="@page.Url">@page.Name</a>
+                </li>
+            }
+            <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0" action="/search/" method="GET">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="query" id="query">
+                    <button class="btn my-2 my-sm-0" type="submit" onclick="doSearch()">Search</button>
+                </form>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../">Return to home screen</a>
+            </li>
+        </ul>
+    </div>
+</nav>

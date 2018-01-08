@@ -1,0 +1,58 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "Master.cshtml";
+    var _items = Model.GetPropertyValue<IEnumerable<IPublishedContent>>("fullImage");
+    var _smallImages = Model.GetPropertyValue<IEnumerable<IPublishedContent>>("cropImage");
+    var _links = Model.GetPropertyValue<IEnumerable<IPublishedContent>>("pageLinks");
+}
+
+@Html.Partial("Navigation")
+
+<div class="container-fluid pushMenuHeight">
+
+    <section class="">
+        @if (_items != null)
+        {
+            foreach (var item in _items)
+            {
+                var topImage = item.GetPropertyValue<IPublishedContent>("Image");
+                <h3>@item.GetPropertyValue("imageTitle")</h3>
+                <img class="topImage" src="@topImage.Url()" />
+            }
+            <div>@(Model.GetPropertyValue("ImgDescr"))</div>
+        }
+    </section>
+
+    <section class="">
+        <h3>Cropped image</h3>
+        @if (_smallImages != null)
+            {
+            foreach (var _image in _smallImages)
+            {
+                var croppedImage = _image.GetPropertyValue<IPublishedContent>("cropImage");
+                <img src="@croppedImage.GetCropUrl(200, 200)" />
+            }
+            <div>@(Model.GetPropertyValue("croppedDescr"))</div>
+        }
+    </section>
+
+    <section class="">
+        <h3>Links</h3>
+        @if (_links != null)
+        {
+            <ul class="nestedList">
+                @foreach (var _link in _links)
+                {
+                    var contentPickerNode = Umbraco.TypedContent(_link.GetPropertyValue<int>("contentPicker"));
+                    IPublishedContent node = Umbraco.TypedContent(contentPickerNode.Id);
+                    <li>
+                        <a href="@contentPickerNode.Url" target="_blank">
+                            @contentPickerNode.Name > @(node.GetPropertyValue<string>("pageDescription"))
+                        </a>
+                    </li>
+                }
+            </ul>
+            <div>@(Model.GetPropertyValue("linksDescr"))</div>
+        }
+    </section>
+</div>

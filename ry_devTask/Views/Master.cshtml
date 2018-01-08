@@ -1,0 +1,63 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+    IPublishedContent currentPage = Model.Content;
+    string umbracoVersion = System.Configuration.ConfigurationManager.AppSettings["umbracoConfigurationStatus"];
+    string pageTitle = "Mario | " + currentPage.GetPropertyValue<string>("pageTitle");
+    string pageDescription = currentPage.GetPropertyValue<string>("pageDescription");
+
+}
+
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="en">
+<head>
+    <title>@pageTitle</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="https://github.com/mariopatrao/">
+    <meta property="publisher" content="https://github.com/mariopatrao/" />
+    <meta name="description" content="@pageDescription">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="@pageTitle" />
+    <meta property="og:description" content="@pageDescription" />
+    <meta name="generator" content="Umbraco @umbracoVersion" />
+    @*<link rel="icon" href="">*@
+    <link rel="canonical" href="https://github.com/mariopatrao/" />
+
+    <!--stylesheets / link tags loaded here-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link href="~/css/reset.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="~/css/index.css" rel="stylesheet" />
+
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+
+    <!-- scripts necessary on the header -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://static.sekandocdn.net/static/feednami/feednami-client-v1.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jStorage/0.4.12/jstorage.js"></script>
+</head>
+<body>
+
+
+    @RenderBody()
+
+    <!--scripts loaded here-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="~/scripts/index.js"></script>
+    <script type="text/javascript" src="~/scripts/newsFeed.js"></script>
+</body>
+
+</html>
+

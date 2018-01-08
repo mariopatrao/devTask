@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+    IPublishedContent currentPage = Model.Content;
+    var _text = currentPage.GetPropertyValue<string>("title");
+}
+
+@Html.Partial("Navigation")
+
+<div class="container-fluid pushMenuHeight">
+    @currentPage.GetPropertyValue("pageContent")
+</div>
+

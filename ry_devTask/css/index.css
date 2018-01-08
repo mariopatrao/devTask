@@ -1,0 +1,107 @@
+/* MISC STYLES START */
+body {
+    font-family: 'Raleway', sans-serif;
+    color: #000;
+    font-size: 1.1em;
+    line-height: 1.2em;
+    background-color: #fff;
+}
+
+p{
+    font-size: 0.9em;
+}
+h3{
+    padding-bottom: 20px;
+    font-size: 1.5em;
+}
+strong{
+    font-weight: bold;
+}
+a {
+    color:#000;
+}
+a:focus, a:hover, a:visited {
+    color: #000;
+    text-decoration: none;
+}
+.homeImg {
+    margin: 50px auto 50px auto;
+    display: block;
+    width: 180px;
+}
+
+.homeTxt {
+    text-align: center;
+    display: block;
+    padding: 0 42px;
+    line-height: 27px;
+}
+
+.homeTxt a {
+    color: #000;
+    border-bottom: 1px solid #000;
+    padding-bottom: 3px;
+}
+
+.pushMenuHeight {
+    margin-top: 80px;
+}
+
+.topImage {width: 100%; }
+.topNested { padding: 50px 0; }
+.skyFeed, .searchList {
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.skyFeed a, .searchList a {
+    color: #000;
+}
+.skyFeed li, .searchList li {
+    display: inline-block;
+    height: 320px;
+    vertical-align: top;
+}
+.searchList li {
+    height: 60px;
+}
+.skyFeed li img, .searchList li img {
+    padding-bottom: 15px;
+}
+.skyFeed li p.newsTitle, .searchList li p.newsTitle, .searchList li p.pageTitle {
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+.skyFeed li p.newsDate, .searchList li p.newsDate {
+    padding-top: 15px;
+    font-size: 0.7em;
+    font-style: italic;
+}
+
+.hideFirst {
+    display: none;
+}
+
+.bottomSpace {
+    padding-bottom: 35px;
+}
+
+section {
+    padding-bottom: 50px;
+}
+
+section h3{
+    padding-bottom: 25px;
+}
+
+section p {
+    padding-top: 25px;
+}
+
+.nestedList li {
+    line-height: 27px;
+}
+
+#resultsMsg {
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+}

@@ -1,0 +1,51 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Master.cshtml";
+    var searchQuery = "";
+}
+
+@Html.Partial("Navigation")
+
+<div class="container-fluid pushMenuHeight">
+    @{
+        searchQuery = Request.QueryString["query"];
+        <div class="col-xs-12">
+            @if (!string.IsNullOrEmpty(searchQuery))
+            {
+                <p id="resultsMsg">Your search results for <strong>@searchQuery</strong></p>
+                <ul class="searchList">
+                    @foreach (var result in Umbraco.Search(searchQuery))
+                    {
+                        IPublishedContent node = Umbraco.TypedContent(result.id);
+                        <li class="col-lg-4">
+                            <a href="@result.Url">
+                                <p class="pageTitle">@result.Name</p>
+                                <p>@(node.GetPropertyValue<string>("pageDescription"))</p>
+                            </a>
+                        </li>
+                    }
+                    
+                </ul>
+            }
+            else
+            {
+                <p>Nothing searched for. Please search for something.</p>
+            }
+        </div>
+    }
+</div>
+
+<script>
+    var _news = $.jStorage.get('news');
+    var _query = Cookies.get('query');
+    var newsObj = $.parseHTML(_news);
+    $.each(newsObj, function() {
+        var $this = $(this);
+        var _title = $this.find('p.newsTitle').text().toLowerCase();
+        if (_title.indexOf("" + _query.toLowerCase() + "") !== -1) {
+            $('.searchList').append($this);
+        }
+    });
+</script>
+
+
